@@ -1,0 +1,487 @@
+# Tested on Deeptest release 1.10.0
+cbmcArguments:
+  cover-function-only: false
+  depth: false
+  do-not-test-methods-with-access: [ private ]
+  java-generate-no-comments: true
+  no-trivial-tests: true
+phases:
+-
+  timeout: 300
+  cbmcArguments:
+    java-assume-inputs-non-null: true
+    max-nondet-array-length: 10
+    string-non-empty: true
+    unwind: 1
+-
+  timeout: 300
+  cbmcArguments:
+    max-nondet-array-length: 20
+    unwind: 2
+-
+  timeout: 300
+  cbmcArguments:
+    max-nondet-array-length: 30
+    max-nondet-string-length: 10
+    unwind: 3
+units:
+  - target:
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/backup/GoldBackup.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/backup/GoldBackup.java
+  - target:
+    - dir: hydra-data/target/classes
+      file: com/addthis/hydra/data/query/op/OpDiff.class
+      sourceDir: hydra-data/src/main/java
+      sourceFile: com/addthis/hydra/data/query/op/OpDiff.java
+    # Child of OpDiff.class
+    - dir: hydra-data/target/classes
+      file: com/addthis/hydra/data/query/AbstractTableOp.class
+      sourceDir: hydra-data/src/main/java
+      sourceFile: com/addthis/hydra/data/query/AbstractTableOp.java
+  - target:
+    - dir: hydra-task/target/classes
+      file: com/addthis/hydra/task/stream/MeshHostScoreCache.class
+      sourceDir: hydra-task/src/main/java
+      sourceFile: com/addthis/hydra/task/stream/MeshHostScoreCache.java
+  - target:
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/spawn/JobRekickTask.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/spawn/JobRekickTask.java
+    # Child of JobRekickTask.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/Job.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/Job.java
+    # Child of JobRekickTask.class
+    - dir: hydra-api/target/classes
+      file: com/addthis/hydra/job/JobState.class
+      sourceDir: hydra-api/src/main/java
+      sourceFile: com/addthis/hydra/job/JobState.java
+  - target:
+    - dir: hydra-store/target/classes
+      file: com/addthis/hydra/store/common/PageFactory.class
+      sourceDir: hydra-store/src/main/java
+      sourceFile: com/addthis/hydra/store/common/PageFactory.java
+    # Child of PageFactory.class
+    - dir: hydra-store/target/classes
+      file: com/addthis/hydra/store/db/DBKey.class
+      sourceDir: hydra-store/src/main/java
+      sourceFile: com/addthis/hydra/store/db/DBKey.java
+    # Child of PageFactory.class
+    - dir: hydra-store/target/classes
+      file: com/addthis/hydra/store/kv/PageEncodeType.class
+      sourceDir: hydra-store/src/main/java
+      sourceFile: com/addthis/hydra/store/kv/PageEncodeType.java
+    # Child of PageFactory.class
+    - dir: hydra-store/target/classes
+      file: com/addthis/hydra/store/kv/PagedKeyValueStore.class
+      sourceDir: hydra-store/src/main/java
+      sourceFile: com/addthis/hydra/store/kv/PagedKeyValueStore.java
+  - target:
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/web/resources/GroupsResource.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/web/resources/GroupsResource.java
+    # Child of GroupsResource.class
+    - dir: hydra-api/target/classes
+      file: com/addthis/hydra/job/JobTask.class
+      sourceDir: hydra-api/src/main/java
+      sourceFile: com/addthis/hydra/job/JobTask.java
+    # Child of GroupsResource.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/mq/HostState.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/mq/HostState.java
+    # Child of GroupsResource.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/spawn/Spawn.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/spawn/Spawn.java
+    # Child of GroupsResource.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/web/SpawnServiceConfiguration.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/web/SpawnServiceConfiguration.java
+  - target:
+    - dir: hydra-filters/target/classes
+      file: com/addthis/hydra/data/filter/util/BundleCalculator.class
+      sourceDir: hydra-filters/src/main/java
+      sourceFile: com/addthis/hydra/data/filter/util/BundleCalculator.java
+    # Child of BundleCalculator.class
+    - dir: hydra-essentials/target/classes
+      file: com/addthis/hydra/common/hash/PluggableHashFunction.class
+      sourceDir: hydra-essentials/src/main/java
+      sourceFile: com/addthis/hydra/common/hash/PluggableHashFunction.java
+  - target:
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/spawn/TaskMover.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/spawn/TaskMover.java
+    # Child of TaskMover.class
+    - dir: hydra-api/target/classes
+      file: com/addthis/hydra/job/JobTaskErrorCode.class
+      sourceDir: hydra-api/src/main/java
+      sourceFile: com/addthis/hydra/job/JobTaskErrorCode.java
+    # Child of TaskMover.class
+    - dir: hydra-api/target/classes
+      file: com/addthis/hydra/job/JobTaskState.class
+      sourceDir: hydra-api/src/main/java
+      sourceFile: com/addthis/hydra/job/JobTaskState.java
+    # Child of TaskMover.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/entity/JobCommand.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/entity/JobCommand.java
+    # Child of TaskMover.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/mq/CommandTaskReplicate.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/mq/CommandTaskReplicate.java
+    # Child of TaskMover.class
+    - dir: hydra-api/target/classes
+      file: com/addthis/hydra/job/mq/JobKey.class
+      sourceDir: hydra-api/src/main/java
+      sourceFile: com/addthis/hydra/job/mq/JobKey.java
+    # Child of TaskMover.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/mq/ReplicaTarget.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/mq/ReplicaTarget.java
+  - target:
+    - dir: hydra-avro/target/classes
+      file: com/addthis/hydra/task/source/DataSourceAvro.class
+      sourceDir: hydra-avro/src/main/java
+      sourceFile: com/addthis/hydra/task/source/DataSourceAvro.java
+    # Child of DataSourceAvro.class
+    - dir: hydra-task/target/classes
+      file: com/addthis/hydra/task/source/bundleizer/Bundleizer.class
+      sourceDir: hydra-task/src/main/java
+      sourceFile: com/addthis/hydra/task/source/bundleizer/Bundleizer.java
+    # Child of DataSourceAvro.class
+    - dir: hydra-task/target/classes
+      file: com/addthis/hydra/task/source/bundleizer/BundleizerFactory.class
+      sourceDir: hydra-task/src/main/java
+      sourceFile: com/addthis/hydra/task/source/bundleizer/BundleizerFactory.java
+  - target:
+    - dir: hydra-data/target/classes
+      file: com/addthis/hydra/data/util/DateUtil.class
+      sourceDir: hydra-data/src/main/java
+      sourceFile: com/addthis/hydra/data/util/DateUtil.java
+  - target:
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/spawn/UpdateEventRunnable.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/spawn/UpdateEventRunnable.java
+  - target:
+    - dir: hydra-avro/target/classes
+      file: com/addthis/hydra/task/source/DataSourceParquet.class
+      sourceDir: hydra-avro/src/main/java
+      sourceFile: com/addthis/hydra/task/source/DataSourceParquet.java
+  - target:
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/minion/FileWatcher.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/minion/FileWatcher.java
+  - target:
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/spawn/Spawn.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/spawn/Spawn.java
+    # Child of Spawn.class
+    - dir: hydra-essentials/target/classes
+      file: com/addthis/hydra/common/util/CloseTask.class
+      sourceDir: hydra-essentials/src/main/java
+      sourceFile: com/addthis/hydra/common/util/CloseTask.java
+    # Child of Spawn.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/HostFailWorker.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/HostFailWorker.java
+    # Child of Spawn.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/IJob.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/IJob.java
+    # Child of Spawn.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/JobConfigManager.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/JobConfigManager.java
+    # Child of Spawn.class
+    - dir: hydra-api/target/classes
+      file: com/addthis/hydra/job/JobDefaults.class
+      sourceDir: hydra-api/src/main/java
+      sourceFile: com/addthis/hydra/job/JobDefaults.java
+    # Child of Spawn.class
+    - dir: hydra-api/target/classes
+      file: com/addthis/hydra/job/JobEvent.class
+      sourceDir: hydra-api/src/main/java
+      sourceFile: com/addthis/hydra/job/JobEvent.java
+    # Child of Spawn.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/JobExpand.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/JobExpand.java
+    # Child of Spawn.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/JobExpander.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/JobExpander.java
+    # Child of Spawn.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/JobExpanderImpl.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/JobExpanderImpl.java
+    # Child of Spawn.class
+    - dir: hydra-api/target/classes
+      file: com/addthis/hydra/job/JobParameter.class
+      sourceDir: hydra-api/src/main/java
+      sourceFile: com/addthis/hydra/job/JobParameter.java
+    # Child of Spawn.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/JobTaskDirectoryMatch.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/JobTaskDirectoryMatch.java
+    # Child of Spawn.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/JobTaskMoveAssignment.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/JobTaskMoveAssignment.java
+    # Child of Spawn.class
+    - dir: hydra-api/target/classes
+      file: com/addthis/hydra/job/JobTaskReplica.class
+      sourceDir: hydra-api/src/main/java
+      sourceFile: com/addthis/hydra/job/JobTaskReplica.java
+    # Child of Spawn.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/RebalanceOutcome.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/RebalanceOutcome.java
+    # Child of Spawn.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/alert/GroupManager.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/alert/GroupManager.java
+    # Child of Spawn.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/alert/JobAlertManager.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/alert/JobAlertManager.java
+    # Child of Spawn.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/alert/JobAlertManagerImpl.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/alert/JobAlertManagerImpl.java
+    # Child of Spawn.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/alert/JobAlertRunner.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/alert/JobAlertRunner.java
+    # Child of Spawn.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/alias/AliasManager.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/alias/AliasManager.java
+    # Child of Spawn.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/alias/AliasManagerImpl.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/alias/AliasManagerImpl.java
+    # Child of Spawn.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/auth/PermissionsManager.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/auth/PermissionsManager.java
+    # Child of Spawn.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/backup/ScheduledBackupType.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/backup/ScheduledBackupType.java
+    # Child of Spawn.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/entity/JobCommandManager.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/entity/JobCommandManager.java
+    # Child of Spawn.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/entity/JobEntityManager.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/entity/JobEntityManager.java
+    # Child of Spawn.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/entity/JobMacro.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/entity/JobMacro.java
+    # Child of Spawn.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/entity/JobMacroManager.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/entity/JobMacroManager.java
+    # Child of Spawn.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/mq/CommandTaskDelete.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/mq/CommandTaskDelete.java
+    # Child of Spawn.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/mq/CommandTaskKick.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/mq/CommandTaskKick.java
+    # Child of Spawn.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/mq/CommandTaskRevert.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/mq/CommandTaskRevert.java
+    # Child of Spawn.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/mq/CommandTaskStop.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/mq/CommandTaskStop.java
+    # Child of Spawn.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/mq/CoreMessage.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/mq/CoreMessage.java
+    # Child of Spawn.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/mq/HostMessage.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/mq/HostMessage.java
+    # Child of Spawn.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/mq/StatusTaskBackup.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/mq/StatusTaskBackup.java
+    # Child of Spawn.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/mq/StatusTaskBegin.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/mq/StatusTaskBegin.java
+    # Child of Spawn.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/mq/StatusTaskCantBegin.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/mq/StatusTaskCantBegin.java
+    # Child of Spawn.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/mq/StatusTaskEnd.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/mq/StatusTaskEnd.java
+    # Child of Spawn.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/mq/StatusTaskPort.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/mq/StatusTaskPort.java
+    # Child of Spawn.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/mq/StatusTaskReplica.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/mq/StatusTaskReplica.java
+    # Child of Spawn.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/mq/StatusTaskReplicate.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/mq/StatusTaskReplicate.java
+    # Child of Spawn.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/mq/StatusTaskRevert.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/mq/StatusTaskRevert.java
+    # Child of Spawn.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/spawn/balancer/HostCandidateIterator.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/spawn/balancer/HostCandidateIterator.java
+    # Child of Spawn.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/spawn/balancer/SpawnBalancer.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/spawn/balancer/SpawnBalancer.java
+    # Child of Spawn.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/spawn/search/JobSearcher.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/spawn/search/JobSearcher.java
+    # Child of Spawn.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/spawn/search/SearchOptions.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/spawn/search/SearchOptions.java
+    # Child of Spawn.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/store/CachedSpawnDataStore.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/store/CachedSpawnDataStore.java
+    # Child of Spawn.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/store/DataStoreUtil.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/store/DataStoreUtil.java
+    # Child of Spawn.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/store/JobStore.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/store/JobStore.java
+    # Child of Spawn.class
+    - dir: hydra-api/target/classes
+      file: com/addthis/hydra/job/store/SpawnDataStore.class
+      sourceDir: hydra-api/src/main/java
+      sourceFile: com/addthis/hydra/job/store/SpawnDataStore.java
+    # Child of Spawn.class
+    - dir: hydra-api/target/classes
+      file: com/addthis/hydra/job/store/SpawnDataStoreKeys.class
+      sourceDir: hydra-api/src/main/java
+      sourceFile: com/addthis/hydra/job/store/SpawnDataStoreKeys.java
+    # Child of Spawn.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/web/SpawnService.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/web/SpawnService.java
+    # Child of Spawn.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/web/websocket/SpawnWebSocket.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/web/websocket/SpawnWebSocket.java
+    # Child of Spawn.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/minion/HostLocation.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/minion/HostLocation.java
+    # Child of Spawn.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/minion/Minion.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/minion/Minion.java
+    # Child of Spawn.class
+    - dir: hydra-task/target/classes
+      file: com/addthis/hydra/task/run/TaskExitState.class
+      sourceDir: hydra-task/src/main/java
+      sourceFile: com/addthis/hydra/task/run/TaskExitState.java
+    # Child of Spawn.class
+    - dir: hydra-data/target/classes
+      file: com/addthis/hydra/util/DirectedGraph.class
+      sourceDir: hydra-data/src/main/java
+      sourceFile: com/addthis/hydra/util/DirectedGraph.java
+    # Child of Spawn.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/util/WithScore.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/util/WithScore.java
+  - target:
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/spawn/balancer/SpawnBalancer.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/spawn/balancer/SpawnBalancer.java
+    # Child of SpawnBalancer.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/spawn/AvailabilityDomain.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/spawn/AvailabilityDomain.java
+    # Child of SpawnBalancer.class
+    - dir: hydra-main/target/classes
+      file: com/addthis/hydra/job/spawn/HostManager.class
+      sourceDir: hydra-main/src/main/java
+      sourceFile: com/addthis/hydra/job/spawn/HostManager.java
